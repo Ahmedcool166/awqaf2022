@@ -1,7 +1,6 @@
 <html lang="en"><head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initialscale=
-1.0">
+<meta name="viewport" content="width=device-width">
 <title>Document</title>
 <link rel="stylesheet" href="stylesheet.css" type="text/css" charset="utf-8" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -31,6 +30,8 @@
 </div>
 <br>
 <br>
+ <input id="btn_done" type="button" value="Iphone" />
+
 
 <button id="clickButton">اضغط هنا بعد كتابة الأسم</button>
 
@@ -42,7 +43,16 @@
  <input id="btn_convert" type="button" value="تحميل الصورة" />
 <br>
 <br>
-<canvas class="textGE"  style="direction: rtl; font-family:GE SS TWO BOLD;" id="canvas1" width="1000" height="1000"  ></canvas>
+
+
+<img id="previewImg" >
+
+
+
+<canvas     class="textGE"  style="direction: rtl; font-family:GE SS TWO BOLD;" id="canvas1" width="1000" height="1000"  ></canvas>
+
+
+
 
 
 </center>
@@ -57,7 +67,7 @@
 var ctx = can.getContext('2d');
 
 var rect = document.getElementById("txtName").getBoundingClientRect();
-console.log(rect.top, rect.right, rect.bottom, rect.left);
+<!-- console.log(rect.top, rect.right, rect.bottom, rect.left); -->
 
 
 //var svg = document.getElementById('mySVG');
@@ -76,9 +86,6 @@ var background = new Image();
 background.src = "./Ramdan2022_New.jpg";
 
 
-
-
-
 var img = new Image();
 img.onload = function() {
   can.width = this.naturalWidth;
@@ -91,7 +98,6 @@ const x = (can.width / 2)-15;
 ctx.beginPath();
 ctx.moveTo(x, 0);
 ctx.stroke();
-
 <!-- ctx.drawImage(img, 0, 0); -->
 ctx.font = 'bold 35px GE SS TWO BOLD';
 ctx.fillStyle = '#006734';
@@ -101,14 +107,16 @@ ctx.filter = "none";
 }
 
 img.src = blobURL;
+
 		
-    });
-	
+
+	  });
 
 </script>
 
  <script>
        document.getElementById("btn_convert").addEventListener("click", function() {
+	   document.getElementById("canvas1").style.display = "block";
 		html2canvas(document.getElementById("canvas1",{ useCORS:true}),
 			{
 				allowTaint: true,
@@ -116,7 +124,7 @@ img.src = blobURL;
 			}).then(function (canvas) {
 				var anchorTag = document.createElement("a");
 				document.body.appendChild(anchorTag);
-				<!-- document.getElementById("previewImg").appendChild(canvas); -->
+				 <!-- document.getElementById("previewImg").appendChild(canvas);  -->
 				anchorTag.setAttribute('crossorigin', 'anonymous'); // works for me
 				anchorTag.download = "Rajhi_Ramdan2022.jpg";
 				anchorTag.href = canvas.toDataURL();
@@ -127,10 +135,32 @@ img.src = blobURL;
   });
 
 
+
+
 	
     </script>
 
+ <script>
+ 
+ 
+ 
+document.getElementById("btn_done").addEventListener("click", function() {
+ 
+				html2canvas(document.getElementById("canvas1",{ useCORS:true}),
+			{
+				allowTaint: true,
+				useCORS: true
+			}).then(function (canvas) {
+			
+			document.getElementById("previewImg").src=canvas.toDataURL();
 
+document.getElementById("canvas1").style.display = "none";
+
+			});
+
+		
+    });
+ </script>
 
 
 </body></html>
