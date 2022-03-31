@@ -30,7 +30,7 @@
 </div>
 <br>
 <br>
- <input id="btn_done" type="button" value="Iphone" />
+ <input hidden id="btn_done" type="button" value="Iphone"  />
 
 
 <button id="clickButton">اضغط هنا بعد كتابة الأسم</button>
@@ -52,15 +52,19 @@
 <canvas     class="textGE"  style="direction: rtl; font-family:GE SS TWO BOLD;" id="canvas1" width="1000" height="1000"  ></canvas>
 
 
-<img id="previewImg" width="1000" height="1000" >
+<img hidden id="previewImg" width="1000" height="1000" >
 
 
 </center>
 
 
 <script>
+$( document ).ready(function() {
+
+
     document.getElementById("clickButton").addEventListener("click", () =>{
-	
+	document.getElementById("canvas1").style.display = "block";
+	document.getElementById("previewImg").style.display = "block";
 	$("#txtName").text(document.getElementById("readTheInput").value);
 		
 		var can = document.getElementById('canvas1');
@@ -104,11 +108,14 @@ ctx.fillStyle = '#006734';
 ctx.textAlign = 'center';
 ctx.fillText(document.getElementById("readTheInput").value,x , 850);
 ctx.filter = "none";
+ document.getElementById("btn_done").click();
 }
-
+ document.getElementById("btn_done").click();
 img.src = blobURL;
+ document.getElementById("btn_done").click();
 
-		
+
+	  });
 
 	  });
 
@@ -117,6 +124,7 @@ img.src = blobURL;
  <script>
        document.getElementById("btn_convert").addEventListener("click", function() {
 	   document.getElementById("canvas1").style.display = "block";
+	   document.getElementById("previewImg").style.display = "none";
 		html2canvas(document.getElementById("canvas1",{ useCORS:true}),
 			{
 				allowTaint: true,
@@ -143,7 +151,7 @@ img.src = blobURL;
  <script>
  
  
- 
+ $( document ).ready(function() {
 document.getElementById("btn_done").addEventListener("click", function() {
  
 				html2canvas(document.getElementById("canvas1",{ useCORS:true}),
@@ -160,6 +168,7 @@ document.getElementById("canvas1").style.display = "none";
 
 		
     });
+	});
  </script>
 
 
