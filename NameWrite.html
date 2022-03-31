@@ -1,0 +1,121 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initialscale=
+1.0">
+<title>Document</title>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="http://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+<script src="http://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+<body>
+
+<center>
+<br>
+<h1> خدمة اصدار التهنئة من إدارة أوقاف صالح الراجحي </h1>
+<br>
+<br>
+<br>
+<div id="imghtml" class="surface" style="
+    width: fit-content;
+    HEIGHT: fit-content;
+">
+
+
+
+<svg id="imgsvg" xmlns="http://www.w3.org/2000/svg" width="1200" height="800"><image id="imageINSVG" x="0" y="0" width="1200px" height="800px" class="image-preview visible" href="./ramdan1_2022 - 1200.jpg"></image><defs><filter id="item-filter-1-shadow-2" width="323.46443174988883" height="61.00652967982502" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse"><feGaussianBlur in="SourceAlpha" stdDeviation="2.893471676714504"></feGaussianBlur><feOffset dx="2.893471676714504" dy="2.893471676714504" result="OFFSETBLUR"></feOffset><feComponentTransfer in="OFFSETBLUR" result="SHADOW"><feFuncA type="linear" slope="0.5"></feFuncA></feComponentTransfer><feMerge><feMergeNode in="SHADOW"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge></filter></defs>    <text  style="direction: rtl;" data-proxy-id="21" fill="#194d33" cursor="default" transform="" filter="url(#item-filter-1-shadow-2)" font-family="Archivo" font-size="80" dominant-baseline="text-before-edge" y="590" x="1180" id="txtName"></text>
+<rect class="selection" transform="" x="0" y="0" width="0" height="0"></rect></svg>
+
+
+
+
+</div>
+<br>
+<br>
+
+<button id="clickButton">اضغط هنا بعد كتابة الأسم</button>
+
+<input id="readTheInput" dir="rtl" placeholder="قم بكتابة اسمك هنا">
+
+<br>
+<br>
+
+ <input id="btn_convert" type="button" value="تحميل الصورة" />
+<br>
+<br>
+<canvas id="canvas1" width="1200" height="800"  ></canvas>
+
+
+</center>
+
+
+<script>
+    document.getElementById("clickButton").addEventListener("click", () =>{
+	
+	$("#txtName").text(document.getElementById("readTheInput").value);
+		
+		var can = document.getElementById('canvas1');
+var ctx = can.getContext('2d');
+
+//var svg = document.getElementById('mySVG');
+
+
+var svgElement = document.getElementById('imgsvg');
+let {width, height} = svgElement.getBBox(); 
+let clonedSvgElement = svgElement.cloneNode(true);
+// true for deep clone
+let outerHTML = clonedSvgElement.outerHTML,
+  blob = new Blob([outerHTML],{type:'image/svg+xml;charset=utf-8'});
+  let URL = window.URL || window.webkitURL || window;
+let blobURL = URL.createObjectURL(blob);
+
+var background = new Image();
+background.src = "./ramdan1_2022 - 1200.jpg";
+
+
+var img = new Image();
+img.onload = function() {
+  can.width = this.naturalWidth;
+  can.height = this.naturalHeight;
+ctx.imageSmoothingEnabled = false;
+ctx.drawImage(background, 0, 0);
+ctx.drawImage(img, 0, 0);
+ctx.filter = "none";
+}
+img.src = blobURL;
+
+		
+		
+    });
+	
+
+</script>
+
+ <script>
+       document.getElementById("btn_convert").addEventListener("click", function() {
+		html2canvas(document.getElementById("canvas1",{ useCORS:true}),
+			{
+				allowTaint: true,
+				useCORS: true
+			}).then(function (canvas) {
+				var anchorTag = document.createElement("a");
+				document.body.appendChild(anchorTag);
+				<!-- document.getElementById("previewImg").appendChild(canvas); -->
+				anchorTag.setAttribute('crossorigin', 'anonymous'); // works for me
+				anchorTag.download = "Rajhi_Ramdan2022.jpg";
+				anchorTag.href = canvas.toDataURL();
+				anchorTag.target = '_blank';
+				anchorTag.click();
+			});
+			
+  });
+
+
+	
+    </script>
+
+<style>
+canvas{width:1200px; height:800px;}
+</style>
+
+
+</body></html>

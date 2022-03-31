@@ -1,0 +1,16 @@
+
+
+
+
+@font-face {
+    font-family: 'GE SS TWO BOLD'; /*to use later*/
+    src: url('GE SS TWO BOLD.OTF'); /*URL to the font*/
+}
+.textGE {
+    font-family: 'GE SS TWO BOLD';
+	
+}
+h1 {
+ font-family: 'GE SS TWO BOLD'; 
+ 
+ }
